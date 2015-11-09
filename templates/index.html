@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+	<link rel "stylesheet" type="text/css" href="normalize.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+
+	<div class="overlay">
+		<header>
+			<div class="wizard"></div>
+			<div class="close-overlay">X</div>
+		</header>
+		<div class="overlay-prompt">
+			<h1 class="headline">Soothster has more questions!</h1>
+
+			<h2 class="body">Download the Sayer app to share your opinions &amp predictions and ask your own questions.<h2>
+		</div>
+		<form>
+			<input type="email" placeholder="Enter your email address">
+			<input type="submit" value="Get Sayer">
+		</form>
+	</div>
+
+	<header>
+		<div class="wizard"></div>
+	</header>
+
+	<section class="sooth">
+		<div class="sooth-creator">
+			<img class="creator-avatar" src="http://sayerstorage2.blob.core.windows.net/picscontainer-staging/{{result.sooth.OwnerName}}"></img>
+			<h1 class="username">{{result.sooth.OwnerName}}</h1>
+			<hr>
+		</div>
+		<h1 class="sooth-question">{{result.sooth.Question}}</h1>
+
+		{% for answer in result.sooth.PosibleAnswersList %}
+			<h5 class="sooth-answer-choice hide-percentage" style="background: linear-gradient(to right, #FF8500 {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%, white {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%)">{{answer.Description}}<span class="percentage" style="visibility:hidden">{{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%</span></h5>
+		{% endfor %}
+
+		<div class="sayer-info">
+			<div class="sayers"><span class="number">{{result.sooth.Sayers}}</span>Sayers</div>
+			<div class="comments"><span class="number">{{result.sooth.CommentsCount}}</span>Comments</div>
+			<div class="link"><span class="number"><img height="16" width="16" style="margin-bottom:-2px;" src="/images/Link_Icon@3x.png"></span>Link</div>
+		</div>
+	</section>
+
+	<section class="download-prompt">
+		<h1 class="cta">Soothster asks more questions on Sayer. Get the app to weigh in!</h1>
+		<form>
+			<input type="email" placeholder="Enter your email address">
+			<input type="submit" value="Get Sayer">
+		</form>
+	</section>
+
+	<footer>
+		<ul>
+			<li>Terms</li>
+			<li>-</li>
+			<li>Privacy</li>
+		</ul>
+	</footer>
+</body>
+</html>
+
+<script>
+$(".sooth-answer-choice").click(function(){
+  $("h5").removeClass("hide-percentage").css("background-position", "left bottom");
+  $("h5 span").css("visibility", "visible");
+  $(".sooth").mouseleave(function(e){
+  	var $this = $(this);
+  	var top = $this.offset().top + $this.outerHeight();
+  	if(e.pageY <= top)
+			$(".overlay").css("visibility", "visible").hide().fadeIn('slow');
+			clearTimeout(triggerOverlay);
+	});
+	triggerOverlay = setTimeout(function(){
+  	$(".overlay").css("visibility", "visible").hide().fadeIn('slow');
+		$(".sooth").unbind("mouseout");
+		$(".sooth").unbind("mouseover");
+		$(".sooth").unbind("click");
+	}, 5000);
+});
+
+$(".close-overlay").click(function(){
+	$(".overlay").css("visibility", "hidden");
+	$(".sooth-answer-choice").unbind("click");
+	$(".sooth").unbind("mouseout");
+	$(".sooth").unbind("mouseover");
+	$(".sooth").unbind("click");
+});
+
+
+</script>

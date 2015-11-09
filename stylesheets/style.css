@@ -1,0 +1,284 @@
+h1,
+h2,
+h3, 
+h4,
+h5 {
+	font-family: 'Helvetica Neue';
+}
+body {
+	background-color: #217EC2;
+}
+
+/* OVERLAY */
+.overlay {
+	background-color: rgba(13, 41, 65, .9);
+	position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  padding-top: 10px;
+  visibility: hidden;
+}
+.close-overlay {
+	float: right;
+	font-family: 'Helvetica Neue';
+	font-size: 48px;
+	color: #FFFFFF;
+	font-weight: 400;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 20px;
+}
+.overlay-prompt {
+	margin: 0 auto;
+	width: 800px;
+}
+.headline {
+	font-size: 48px;
+	color: #FFFFFF;
+	font-weight: 500;
+	text-align: center;
+}
+.body {
+	font-size: 36px;
+	color: #FFFFFF;
+	font-weight: 400;
+	text-align: center;
+}
+
+/* MAIN VIEW */
+header {
+}
+.wizard {
+	background: url("../images/Wizard@3x.png");
+	height: 80px;
+	width: 64px;
+	background-size:contain;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-repeat: no-repeat;
+}
+form {
+	text-align: center;
+}
+input[type="email"]{
+	width: 500px;
+	border-radius: 5px;
+	height: 28px;
+	font-family: 'Helvetica Neue';
+	font-weight: 300;
+	font-size: 24px;
+	padding-left: 10px;
+ 	border:2px solid #FFFFFF;
+}
+input[type="submit"]{
+	width: 200px;
+	background-color: #FF8500;
+	color: #FFFFFF;
+	border: 2px solid #FF8500;
+	border-radius: 5px;
+	font-family: "Helvetica Neue";
+	font-weight: 400;
+	font-size: 24px;
+	padding: 1px;
+	margin-left: 10px;
+	cursor:pointer;
+
+}
+input:focus {
+	border: 2px solid #FF8500;
+	outline: none;
+}
+footer {
+	margin: 0 auto;
+	width: 100%;
+	margin-top: 30px;
+	position: absolute;
+	z-index: 2000;
+}
+ul {
+	text-align: center;
+  list-style-type:none;
+  padding: 0px;
+  margin: 0px;
+}
+li { 
+	font-family: 'Helvetica Neue';
+	display: inline;
+	color: #FFFFFF;
+}
+
+/* MAIN SOOTH VIEW */
+
+.sooth {
+	padding: 10px;
+	margin: 0 auto;
+	width: 740px;
+	background-color: #FFFFFF;
+	border-radius: 20px;
+	min-height: 400px;
+}
+.sooth-creator {
+	width: 95%;
+	margin: 0 auto;
+}
+.creator-avatar {
+	height: 30px;
+	width: 30px;
+	border-radius: 15px;
+	display: inline;
+	float: left;
+	margin-right: 10px;
+	margin-top: -2px;
+}
+.username {
+	display: inline;
+	font-family: 'Helvetica Neue';
+	font-weight: 500;
+	font-size: 18px;
+	color: #292929;
+}
+hr {
+	margin-top: 15px;
+}
+.sooth-question {
+	text-align: center;
+	font-size: 22px;
+	font-weight: 400;
+	color: #292929;
+	margin: 0 auto;
+	width: 80%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+/* SOOTH ANSWER CHOICES */
+
+.sooth-answer-choice {
+	height: 30px;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-top: 5px;
+	width: 680px;
+	border: 1px solid #FF8500;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	font-family: 'Helvetica Neue';
+	font-size: 18px;
+	font-weight: 200;
+	color: #292929;
+	cursor: pointer;
+	transition:all 4s ease;
+}
+
+.hide-percentage {
+	background: linear-gradient(to right, #FF8500 50%, #FFFFFF 50%) !important;
+	background-size: 200% 100% !important;
+	background-position: right bottom !important;
+}
+
+.percentage {
+	float: right;
+	margin-right: 10px;
+	font-size: 16px;
+	margin-top: 2px;
+}
+
+/* EXTRA SOOTH INFO */
+
+.sayer-info {
+	margin: 0 auto;
+	width: 95%;
+	font-family: 'Helvetica Neue';
+	margin-top: 20px;
+}
+.sayers,
+.comments,
+.link{
+	display:inline;
+	font-size:16px;
+	font-weight: 400;
+	color: #292929;
+	margin-right: 15px;
+}
+.number {
+	font-size: 16px;
+	font-weight: 500;
+	color: #217EC2;
+	margin-right: 5px;
+}
+
+/* SUBMIT */
+
+.download-prompt {
+	margin: 0 auto;
+	width: 750px;
+}
+.cta {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	color: #FFFFFF;
+
+}
+
+@media only screen and (max-width: 750px) {
+
+	.sooth {
+		width: 100%;
+		margin-left: -10px;
+	}
+	.sooth-answer-choice {
+		width: 95%;	
+	}
+	.sooth-question {
+		font-size: 20px;
+		width: 100%;
+	}
+
+	/* SUBMIT */
+
+	.download-prompt {
+		margin: 0 auto;
+		width: 100%;
+	}
+	.cta {
+		font-size: 22px;
+	}
+
+	input[type="email"]{
+		width: 90%;
+		height: 28px;
+		font-weight: 300;
+		font-size: 24px;
+		padding-left: 10px;
+		margin-bottom: 10px;
+	}
+	input[type="submit"]{
+		display: block;
+		width: 93%;
+		background-color: #FF8500;
+		font-weight: 400;
+		font-size: 24px;
+		padding: 1px;
+		margin: 0 auto;
+		cursor:pointer;
+	}
+	/* OVERLAY */
+	.overlay-prompt {
+		margin: 0 auto;
+		width: 100%;
+	}
+	.headline {
+		font-size: 36px;
+	}
+	.body {
+		font-size: 24px;
+	}
+/*	footer {
+		margin-top: -30px;
+	}
+*/}
