@@ -72,9 +72,10 @@ $(".sooth-answer-choice").click(function(){
 	$.ajax({
 		url: 'http://api-oauth.sayerapp.com/api/v1/sooth/{{result.sooth.ID}}/answer',
 		type: 'PUT',
-		data: {
+		contentType: 'application/json',
+		data: JSON.stringify({
 			'value': $(this).attr('id')
-		},
+		}),
 		success: function() {
 		  $("h5").removeClass("hide-percentage").css("background-position", "left bottom");
 		  $("h5 span").css("visibility", "visible");
