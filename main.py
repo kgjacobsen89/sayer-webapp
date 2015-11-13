@@ -59,8 +59,6 @@ class MainHandler(webapp2.RequestHandler):
         value = str(self.request.get('clientID'))
         self.response.set_cookie(key='clientID', value=value)
 
-    def post(self):
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

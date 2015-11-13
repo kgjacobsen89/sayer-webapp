@@ -38,7 +38,7 @@
 		<h1 class="sooth-question">{{result.sooth.Question}}</h1>
 
 		{% for answer in result.sooth.PosibleAnswersList %}
-			<h5 class="sooth-answer-choice hide-percentage" style="background: linear-gradient(to right, #FF8500 {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%, white {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%)">{{answer.Description}}<span class="percentage" style="visibility:hidden">{{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%</span></h5>
+			<h5 id="{{loop.index - 1}}" class="sooth-answer-choice hide-percentage" style="background: linear-gradient(to right, #FF8500 {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%, white {{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%)">{{answer.Description}}<span class="percentage" style="visibility:hidden">{{(answer.Count/result.sooth.TotalAnswersCount * 100)|round|int}}%</span></h5>
 		{% endfor %}
 
 		<div class="sayer-info">
@@ -68,21 +68,31 @@
 
 <script>
 $(".sooth-answer-choice").click(function(){
-  $("h5").removeClass("hide-percentage").css("background-position", "left bottom");
-  $("h5 span").css("visibility", "visible");
-  $(".sooth").mouseleave(function(e){
-  	var $this = $(this);
-  	var top = $this.offset().top + $this.outerHeight();
-  	if(e.pageY <= top)
+	console.log($(this).attr('id'));
+	$.ajax({
+		url: 'http://api-oauth.sayerapp.com/api/v1/sooth/{{result.sooth.ID}}/answer',
+		type: 'PUT',
+		data: {
+			'value': $(this).attr('id')
+		},
+		success: function() {
+		  $("h5").removeClass("hide-percentage").css("background-position", "left bottom");
+		  $("h5 span").css("visibility", "visible");
+		  $(".sooth").mouseleave(function(e){
+			var $this = $(this);
+			var top = $this.offset().top + $this.outerHeight();
+			if(e.pageY <= top)
+					$(".overlay").css("visibility", "visible").hide().fadeIn('slow');
+					clearTimeout(triggerOverlay);
+			});
+			triggerOverlay = setTimeout(function(){
 			$(".overlay").css("visibility", "visible").hide().fadeIn('slow');
-			clearTimeout(triggerOverlay);
+				$(".sooth").unbind("mouseout");
+				$(".sooth").unbind("mouseover");
+				$(".sooth").unbind("click");
+			}, 5000);
+		}
 	});
-	triggerOverlay = setTimeout(function(){
-  	$(".overlay").css("visibility", "visible").hide().fadeIn('slow');
-		$(".sooth").unbind("mouseout");
-		$(".sooth").unbind("mouseover");
-		$(".sooth").unbind("click");
-	}, 5000);
 });
 
 $(".close-overlay").click(function(){
